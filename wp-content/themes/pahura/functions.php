@@ -12,10 +12,10 @@ require_once get_template_directory() . '/includes/nepali_calendar.php';
 require_once get_template_directory() . '/includes/tharu_date_functions.php';
 require_once get_template_directory() . '/includes/site_settings.php';
 
-function get_tharu_date($date)
+function get_tharu_date($yy, $mm, $dd)
 {
 	$cal = new Nepali_Calendar();
-	$tharu_date = $cal->eng_to_nep(2020,03,20);
+	$tharu_date = $cal->eng_to_nep($yy, $mm, $dd);
 	$tharu_date = dtn_convert_to_tharu($tharu_date);
 
 	return $tharu_date;
@@ -23,8 +23,10 @@ function get_tharu_date($date)
 
 function tharu_date_today()
 {
-	$today = date('Y,m,d');
-	$tharu_date = get_tharu_date(2020, 03, 20);
+	$yy = date('Y');
+	$mm = date('m');
+	$dd = date('d');
+	$tharu_date = get_tharu_date($yy, $mm, $dd);
 	echo $tharu_date['date']  . ' ' . $tharu_date['month_name'] . ' ' . $tharu_date['year'] . ', '. $tharu_date['day'];
 }
 
